@@ -81,20 +81,19 @@ a {
 }
 
 .chat-link {
-  width: 58px;
-  height: 58px;
-  border-radius: 18px;
+  width: 62px;
+  height: 62px;
+  border-radius: 20px;
   display: flex;
   align-items: center;
   justify-content: center;
   color: #fff;
   box-shadow: 0 14px 36px rgba(0, 0, 0, 0.34);
-  backdrop-filter: blur(6px);
   transition: var(--transition);
   animation: chatAttention 2.8s ease-in-out infinite;
   overflow: hidden;
-  background: rgba(255, 255, 255, 0.98);
-  border: 1px solid rgba(212, 168, 83, 0.22);
+  background: transparent;
+  border: none;
 }
 
 .chat-link:hover {
@@ -105,24 +104,16 @@ a {
   animation-delay: 0.35s;
 }
 
-.chat-link--zalo {
-  background: transparent;
-}
-
-.chat-link--messenger {
-  background: transparent;
-}
-
 .chat-link.is-disabled {
   opacity: 0.7;
   cursor: not-allowed;
 }
 
 .chat-icon-image {
-  width: 58px;
-  height: 58px;
+  width: 62px;
+  height: 62px;
   object-fit: contain;
-  border-radius: 18px;
+  border-radius: 20px;
 }
 
 @keyframes chatAttention {
@@ -192,9 +183,11 @@ a {
 .hero-overlay {
   position: absolute;
   inset: 0;
-  background: url('../picture/456911589011082479636.jpg') center/cover no-repeat;
-  opacity: 0.08;
-  filter: blur(2px);
+  background:
+    linear-gradient(180deg, rgba(10, 10, 15, 0.22), rgba(10, 10, 15, 0.38)),
+    url('assets/project-images/456911589011082479636.jpg') center/cover no-repeat;
+  opacity: 0.22;
+  filter: blur(1.5px);
 }
 
 .hero-particles {
@@ -1426,9 +1419,9 @@ a {
   }
 
   .chat-icon-image {
-    width: 54px;
-    height: 54px;
-    border-radius: 16px;
+    width: 58px;
+    height: 58px;
+    border-radius: 18px;
   }
 
   .chat-toast {

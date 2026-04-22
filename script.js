@@ -32,7 +32,7 @@ function initChatLinks() {
   setChatLink(
     'messengerFloatLink',
     CHAT_LINKS.messenger,
-    'Bot Facebook Messenger cần có Facebook Page. Hãy thay link Messenger sau khi tạo Page.'
+    'Hiện tại chưa hỗ trợ Facebook Messenger'
   );
 }
 
