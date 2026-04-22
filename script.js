@@ -302,8 +302,7 @@ function initForm() {
     btnText.style.display = 'none';
     btnLoading.style.display = 'inline';
 
-    const urlParams = new URLSearchParams(window.location.search);
-    const source = urlParams.get('utm_source') || urlParams.get('src') || 'Landing Page';
+    const source = 'Landing Page';
     document.getElementById('input-source').value = source;
 
     const payload = {
