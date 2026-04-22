@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="256" height="256" role="img" aria-label="Messenger">
+  <defs>
+    <linearGradient id="bubble" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#00C6FF"/>
+      <stop offset="0.55" stop-color="#0078FF"/>
+      <stop offset="1" stop-color="#0061FF"/>
+    </linearGradient>
+  </defs>
+
+  <rect x="12" y="12" width="232" height="232" rx="56" fill="#ffffff"/>
+  <circle cx="128" cy="126" r="80" fill="url(#bubble)"/>
+  <path d="M92 160l44-46 18 18 46-52-44 46-18-18-46 52z" fill="#ffffff"/>
+</svg>
