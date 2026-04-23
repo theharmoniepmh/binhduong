@@ -426,6 +426,7 @@ a {
   max-width: 760px;
   margin-inline: auto;
   line-height: 1.72;
+  text-wrap: pretty;
 }
 
 /* ===== HIGHLIGHTS ===== */
@@ -486,7 +487,8 @@ a {
 
 .highlight-card:hover,
 .highlight-card:focus-visible,
-.highlight-card.is-active {
+.highlight-card.is-active,
+.highlight-card.is-inview {
   border-color: var(--c-gold);
   transform: translateY(-8px);
   box-shadow: 0 16px 44px rgba(212, 168, 83, 0.12);
@@ -495,14 +497,16 @@ a {
 
 .highlight-card:hover::after,
 .highlight-card:focus-visible::after,
-.highlight-card.is-active::after {
+.highlight-card.is-active::after,
+.highlight-card.is-inview::after {
   opacity: 1;
   transform: scaleX(1);
 }
 
 .highlight-card.is-active .card-media,
 .highlight-card:hover .card-media,
-.highlight-card:focus-visible .card-media {
+.highlight-card:focus-visible .card-media,
+.highlight-card.is-inview .card-media {
   transform: translateY(-3px) scale(1.01);
   border-color: rgba(212, 168, 83, 0.34);
   box-shadow: 0 14px 34px rgba(0, 0, 0, 0.22);
@@ -510,13 +514,15 @@ a {
 
 .highlight-card.is-active h3,
 .highlight-card:hover h3,
-.highlight-card:focus-visible h3 {
+.highlight-card:focus-visible h3,
+.highlight-card.is-inview h3 {
   color: var(--c-gold-light);
 }
 
 .highlight-card.is-active p,
 .highlight-card:hover p,
-.highlight-card:focus-visible p {
+.highlight-card:focus-visible p,
+.highlight-card.is-inview p {
   color: rgba(244, 240, 233, 0.9);
 }
 
@@ -528,8 +534,10 @@ a {
   background-image:
     linear-gradient(180deg, rgba(10, 10, 15, 0.04), rgba(10, 10, 15, 0.38)),
     var(--card-image);
-  background-size: cover;
+  background-size: contain;
+  background-repeat: no-repeat;
   background-position: var(--card-position, center);
+  background-color: rgba(10, 10, 15, 0.26);
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06);
   transition: var(--transition);
 }
@@ -1057,6 +1065,13 @@ a {
   border-color: rgba(212, 168, 83, 0.4);
 }
 
+.silicon-card.is-inview {
+  transform: translateY(-8px);
+  border-color: rgba(212, 168, 83, 0.4);
+  box-shadow: 0 14px 38px rgba(212, 168, 83, 0.1);
+  background: linear-gradient(180deg, rgba(20, 20, 25, 1), rgba(28, 24, 18, 0.92));
+}
+
 .silicon-media {
   height: 180px;
   margin-bottom: 24px;
@@ -1065,13 +1080,16 @@ a {
   background-image:
     linear-gradient(180deg, rgba(10, 10, 15, 0.08), rgba(10, 10, 15, 0.42)),
     var(--card-image);
-  background-size: cover;
+  background-size: contain;
+  background-repeat: no-repeat;
   background-position: var(--card-position, center);
+  background-color: rgba(10, 10, 15, 0.26);
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  transition: var(--transition);
 }
 
 .silicon-media--community {
-  height: 228px;
+  height: 180px;
   background-color: rgba(10, 10, 15, 0.08);
   position: relative;
   overflow: hidden;
@@ -1114,6 +1132,16 @@ a {
   text-wrap: balance;
 }
 
+.silicon-card.is-inview .silicon-media {
+  transform: translateY(-3px) scale(1.01);
+  border-color: rgba(212, 168, 83, 0.34);
+  box-shadow: 0 14px 34px rgba(0, 0, 0, 0.22);
+}
+
+.silicon-card.is-inview h3 {
+  color: var(--c-gold-light);
+}
+
 .silicon-card p {
   color: var(--c-text);
   font-size: 0.95rem;
@@ -1152,7 +1180,8 @@ a {
 
 .finance-card:hover,
 .finance-card:focus-visible,
-.finance-card.is-active {
+.finance-card.is-active,
+.finance-card.is-inview {
   transform: translateY(-8px);
   border-color: rgba(212, 168, 83, 0.4);
   box-shadow: 0 12px 40px rgba(212, 168, 83, 0.12);
@@ -1195,6 +1224,10 @@ a {
 }
 
 .finance-card.is-active {
+  background: rgba(212, 168, 83, 0.06);
+}
+
+.finance-card.is-inview {
   background: rgba(212, 168, 83, 0.06);
 }
 
@@ -1436,6 +1469,17 @@ a {
   .finance-grid {
     grid-template-columns: 1fr;
   }
+
+  .hero-desc,
+  .section-subtitle {
+    text-align: justify;
+    text-align-last: left;
+  }
+
+  .hero-desc {
+    font-size: 1.02rem;
+    line-height: 1.74;
+  }
   
   .gallery-slide {
     min-height: 260px;
@@ -1488,9 +1532,20 @@ a {
   }
 
   .silicon-media--community {
-    height: 208px;
-    background-size: cover;
+    height: 168px;
+    background-size: contain;
     background-position: var(--card-position, center 60%);
+  }
+
+  .highlight-card h3,
+  .silicon-card h3,
+  .form-title {
+    text-align: center;
+  }
+
+  .form-desc {
+    text-align: justify;
+    text-align-last: left;
   }
 
   .footer {
@@ -1597,6 +1652,24 @@ a {
     line-height: 1.5;
     max-width: 320px;
     margin-inline: auto;
+  }
+
+  .section-subtitle {
+    font-size: 0.92rem;
+    margin-bottom: 38px;
+  }
+
+  .highlight-card h3,
+  .silicon-card h3 {
+    font-size: 1.22rem;
+    line-height: 1.32;
+  }
+
+  .finance-card p,
+  .highlight-card p,
+  .silicon-card p {
+    font-size: 0.98rem;
+    line-height: 1.65;
   }
 
   .exit-card h3 {

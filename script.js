@@ -17,6 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initScrollReveal();
   initHighlightCards();
   initFinanceCards();
+  initCardInViewMotion();
   initForm();
   initCountdown();
   initStickyCta();
@@ -250,6 +251,22 @@ function initFinanceCards() {
   });
 
   activate(cards[0]);
+}
+
+function initCardInViewMotion() {
+  const cards = document.querySelectorAll('.highlight-card, .silicon-card, .finance-card');
+  if (!cards.length) return;
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      entry.target.classList.toggle('is-inview', entry.isIntersecting);
+    });
+  }, {
+    threshold: 0.35,
+    rootMargin: '0px 0px -12% 0px'
+  });
+
+  cards.forEach((card) => observer.observe(card));
 }
 
 function initForm() {
