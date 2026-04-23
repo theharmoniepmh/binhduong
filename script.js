@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initHighlightCards();
   initFinanceCards();
   initCardInViewMotion();
-  initForm();
+  initLeadForms();
   initCountdown();
   initStickyCta();
   initExitPopup();
@@ -254,7 +254,9 @@ function initFinanceCards() {
 }
 
 function initCardInViewMotion() {
-  const cards = document.querySelectorAll('.highlight-card, .silicon-card, .finance-card');
+  const cards = document.querySelectorAll(
+    '.panel-card, .fact-card, .trust-card, .highlight-card, .silicon-card, .unit-card, .connection-shell, .connection-point, .proof-video-card, .proof-quote-card, .finance-card'
+  );
   if (!cards.length) return;
 
   const observer = new IntersectionObserver((entries) => {
@@ -269,96 +271,119 @@ function initCardInViewMotion() {
   cards.forEach((card) => observer.observe(card));
 }
 
-function initForm() {
-  const form = document.getElementById('leadForm');
-  if (!form) return;
+function initLeadForms() {
+  const forms = document.querySelectorAll('#leadForm');
+  if (!forms.length) return;
 
-  form.addEventListener('submit', async (e) => {
-    e.preventDefault();
-
-    document.querySelectorAll('.field-error').forEach((el) => {
-      el.textContent = '';
+  forms.forEach((form) => {
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      await submitLeadForm(form);
     });
-    document.querySelectorAll('.error').forEach((el) => {
-      el.classList.remove('error');
-    });
-
-    const name = document.getElementById('input-name');
-    const phone = document.getElementById('input-phone');
-    const product = document.getElementById('input-product');
-    const purpose = document.getElementById('input-purpose');
-    let valid = true;
-
-    if (!name.value.trim()) {
-      showError('name', 'Vui lòng nhập họ tên');
-      valid = false;
-    }
-
-    const phoneVal = phone.value.replace(/\D/g, '');
-    if (!phoneVal || phoneVal.length < 9 || phoneVal.length > 11) {
-      showError('phone', 'Số điện thoại không hợp lệ');
-      valid = false;
-    }
-
-    if (!product.value) {
-      showError('product', 'Vui lòng chọn loại căn hộ');
-      valid = false;
-    }
-
-    if (!purpose.value) {
-      showError('purpose', 'Vui lòng chọn mục đích');
-      valid = false;
-    }
-
-    if (!valid) return;
-
-    const btn = document.getElementById('btn-submit');
-    const btnText = btn.querySelector('.btn-text');
-    const btnLoading = btn.querySelector('.btn-loading');
-    btn.disabled = true;
-    btnText.style.display = 'none';
-    btnLoading.style.display = 'inline';
-
-    const source = 'Landing Page';
-    document.getElementById('input-source').value = source;
-
-    const payload = {
-      name: name.value.trim(),
-      phone: `'${phoneVal}`,
-      product: product.value,
-      purpose: purpose.value,
-      source
-    };
-
-    try {
-      const gasConfigured = GAS_ENDPOINT && GAS_ENDPOINT !== 'YOUR_GAS_WEB_APP_URL_HERE';
-      if (!gasConfigured) {
-        throw new Error('Landing page chưa được nối Web App Google Apps Script.');
-      }
-
-      await fetch(GAS_ENDPOINT, {
-        method: 'POST',
-        mode: 'no-cors',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload)
-      });
-
-      document.getElementById('successOverlay').style.display = 'flex';
-      form.reset();
-    } catch (err) {
-      console.error('Submit error:', err);
-      showChatToast('Form chưa được nối backend live hoặc Web App GAS chưa sẵn sàng. Dữ liệu hiện chưa đổ về Google Sheet.');
-    } finally {
-      btn.disabled = false;
-      btnText.style.display = 'inline';
-      btnLoading.style.display = 'none';
-    }
   });
 }
 
-function showError(field, msg) {
-  document.getElementById(`error-${field}`).textContent = msg;
-  document.getElementById(`input-${field}`).classList.add('error');
+async function submitLeadForm(form) {
+  clearFormErrors(form);
+
+  const name = form.querySelector('[name="name"]');
+  const phone = form.querySelector('[name="phone"]');
+  const product = form.querySelector('[name="product"]');
+  const purpose = form.querySelector('[name="purpose"]');
+  const sourceInput = form.querySelector('[name="source"]');
+  let valid = true;
+
+  if (!name || !name.value.trim()) {
+    showFormError(form, 'name', 'Vui lòng nhập họ tên');
+    valid = false;
+  }
+
+  const phoneVal = phone ? phone.value.replace(/\D/g, '') : '';
+  if (!phoneVal || phoneVal.length < 9 || phoneVal.length > 11) {
+    showFormError(form, 'phone', 'Số điện thoại không hợp lệ');
+    valid = false;
+  }
+
+  if (product && !product.value) {
+    showFormError(form, 'product', 'Vui lòng chọn loại căn hộ');
+    valid = false;
+  }
+
+  if (purpose && !purpose.value) {
+    showFormError(form, 'purpose', 'Vui lòng chọn mục đích');
+    valid = false;
+  }
+
+  if (!valid) return;
+
+  const btn = form.querySelector('button[type="submit"]');
+  const btnText = btn ? btn.querySelector('.btn-text') : null;
+  const btnLoading = btn ? btn.querySelector('.btn-loading') : null;
+
+  if (btn) btn.disabled = true;
+  if (btnText) btnText.style.display = 'none';
+  if (btnLoading) btnLoading.style.display = 'inline-flex';
+
+  const source = 'Landing Page';
+  if (sourceInput) sourceInput.value = source;
+
+  const payload = {
+    name: name.value.trim(),
+    phone: `'${phoneVal}`,
+    product: product ? product.value : 'Chưa rõ, cần tư vấn',
+    purpose: purpose ? purpose.value : 'Đang tìm hiểu',
+    source
+  };
+
+  try {
+    const gasConfigured = GAS_ENDPOINT && GAS_ENDPOINT !== 'YOUR_GAS_WEB_APP_URL_HERE';
+    if (!gasConfigured) {
+      throw new Error('Landing page chưa được nối Web App Google Apps Script.');
+    }
+
+    await fetch(GAS_ENDPOINT, {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    });
+
+    document.getElementById('successOverlay').style.display = 'flex';
+    form.reset();
+  } catch (err) {
+    console.error('Submit error:', err);
+    showChatToast('Form chưa được nối backend live hoặc Web App GAS chưa sẵn sàng. Dữ liệu hiện chưa đổ về Google Sheet.');
+  } finally {
+    if (btn) btn.disabled = false;
+    if (btnText) btnText.style.display = 'inline';
+    if (btnLoading) btnLoading.style.display = 'none';
+  }
+}
+
+function clearFormErrors(form) {
+  form.querySelectorAll('.field-error').forEach((el) => {
+    el.textContent = '';
+  });
+  form.querySelectorAll('.error').forEach((el) => {
+    el.classList.remove('error');
+  });
+}
+
+function showFormError(form, field, msg) {
+  const errorEl =
+    form.querySelector(`[data-error-for="${field}"]`) ||
+    document.getElementById(`error-${field}`);
+  const inputEl =
+    form.querySelector(`[name="${field}"]`) ||
+    document.getElementById(`input-${field}`);
+
+  if (errorEl) {
+    errorEl.textContent = msg;
+  }
+
+  if (inputEl) {
+    inputEl.classList.add('error');
+  }
 }
 
 function initCountdown() {
