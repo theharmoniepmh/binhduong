@@ -646,14 +646,19 @@ a {
 }
 
 .trust-card {
-  display: grid;
-  grid-template-columns: 54px minmax(0, 1fr);
-  gap: 16px;
-  align-items: start;
   padding: 18px;
   border-radius: 18px;
   border: 1px solid rgba(212, 168, 83, 0.14);
   background: rgba(255, 255, 255, 0.02);
+}
+
+.trust-card img {
+  display: block;
+  width: calc(100% + 36px);
+  max-width: none;
+  height: auto;
+  margin: -18px -18px 16px;
+  border-radius: 18px 18px 0 0;
 }
 
 .trust-icon {
@@ -799,16 +804,12 @@ a {
 }
 
 .card-media {
-  height: 240px;
+  display: block;
+  width: calc(100% + 56px);
+  max-width: none;
+  height: auto;
   margin: -28px -28px 22px;
   border-radius: 20px 20px 0 0;
-  background-image:
-    linear-gradient(180deg, rgba(10, 10, 15, 0.04), rgba(10, 10, 15, 0.28)),
-    var(--card-image);
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: var(--card-position, center);
-  background-color: rgba(10, 10, 15, 0.3);
   transition: var(--transition);
 }
 
@@ -831,6 +832,8 @@ a {
 }
 
 .highlight-card--video .video-embed {
+  width: calc(100% + 56px);
+  max-width: none;
   margin: -28px -28px 22px;
   border-radius: 20px 20px 0 0;
 }
@@ -1669,9 +1672,7 @@ a {
   margin-bottom: 24px;
 }
 
-.silicon-grid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+.silicon-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 32px;
   margin-top: 48px;
 }
@@ -1700,22 +1701,17 @@ a {
 }
 
 .silicon-media {
-  height: 240px;
+  display: block;
+  width: calc(100% + 56px);
+  max-width: none;
+  height: auto;
   margin: -28px -28px 24px;
   border-radius: 20px 20px 0 0;
-  background-image:
-    linear-gradient(180deg, rgba(10, 10, 15, 0.08), rgba(10, 10, 15, 0.32)),
-    var(--card-image);
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: var(--card-position, center);
-  background-color: rgba(10, 10, 15, 0.3);
   transition: var(--transition);
 }
 
 .silicon-media--community {
-  background-size: cover;
-  background-position: var(--card-position, center 50%);
+  /* removed background properties */
 }
 
 .silicon-card h3 {
@@ -1745,6 +1741,8 @@ a {
 }
 
 .silicon-card--video .video-embed {
+  width: calc(100% + 56px);
+  max-width: none;
   margin: -28px -28px 24px;
   border-radius: 20px 20px 0 0;
 }
@@ -2371,4 +2369,282 @@ a {
     font-size: 1.75rem;
   }
 }
+
+/* ===== RESORT LIVING SECTION (Chuẩn sống nghỉ dưỡng) ===== */
+.resort-living-section {
+  padding: var(--section-pad) 0;
+  background: linear-gradient(180deg, var(--c-bg-deep), #0d0d14, var(--c-bg-deep));
+  position: relative;
+  overflow: hidden;
+}
+
+.resort-living-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--c-gold), transparent);
+  opacity: 0.3;
+}
+
+.resort-living-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: start;
+  margin-bottom: 80px;
+}
+
+.resort-title {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 28px;
+}
+
+.resort-title-line1 {
+  font-family: var(--ff-display);
+  font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+  color: var(--c-white);
+  font-weight: 400;
+  line-height: 1.2;
+}
+
+.resort-title-line1 strong {
+  color: #e77400;
+  font-weight: 700;
+}
+
+.resort-title-line2 {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: clamp(1.4rem, 3vw, 2.2rem);
+  font-style: italic;
+  color: var(--c-gold-light);
+  font-weight: 400;
+  line-height: 1.3;
+  margin-top: 4px;
+}
+
+.resort-hero-image {
+  width: 100%;
+  border-radius: 16px;
+  margin-bottom: 24px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+}
+
+.resort-intro {
+  font-size: 1.05rem;
+  line-height: 1.8;
+  color: var(--c-text);
+  margin-bottom: 24px;
+}
+
+.resort-features {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.resort-feature {
+  padding: 14px 18px;
+  background: rgba(212, 168, 83, 0.04);
+  border-left: 3px solid var(--c-gold);
+  border-radius: 0 10px 10px 0;
+  transition: var(--transition);
+}
+
+.resort-feature:hover {
+  background: rgba(212, 168, 83, 0.1);
+  transform: translateX(4px);
+}
+
+.resort-feature strong {
+  display: block;
+  color: var(--c-gold-light);
+  font-size: 0.95rem;
+  margin-bottom: 4px;
+}
+
+.resort-feature span {
+  color: var(--c-text);
+  font-size: 0.93rem;
+  line-height: 1.6;
+}
+
+/* Cube Carousel */
+.resort-living-carousel {
+  position: sticky;
+  top: 100px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.cube-carousel {
+  width: 100%;
+  max-width: 520px;
+  border-radius: 18px;
+  overflow: visible;
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.5), 0 0 60px rgba(212, 168, 83, 0.08);
+}
+
+.cube-carousel .swiper-slide {
+  border-radius: 18px;
+  overflow: hidden;
+  position: relative;
+  background: var(--c-bg-card);
+}
+
+.cube-carousel .swiper-slide img {
+  width: 100%;
+  height: 400px;
+  object-fit: cover;
+  display: block;
+}
+
+.cube-slide-caption {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 16px 20px;
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.85));
+  color: var(--c-white);
+  font-size: 0.95rem;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+}
+
+.cube-pagination {
+  margin-top: 20px !important;
+  position: relative !important;
+}
+
+.cube-pagination .swiper-pagination-bullet {
+  width: 10px;
+  height: 10px;
+  background: rgba(212, 168, 83, 0.3);
+  opacity: 1;
+  transition: var(--transition);
+}
+
+.cube-pagination .swiper-pagination-bullet-active {
+  background: var(--c-gold);
+  width: 28px;
+  border-radius: 5px;
+}
+
+.cube-nav {
+  display: flex;
+  gap: 12px;
+  margin-top: 16px;
+  justify-content: center;
+}
+
+.cube-nav-btn {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: 1px solid var(--c-border);
+  background: var(--c-bg-card);
+  color: var(--c-gold);
+  font-size: 1.6rem;
+  cursor: pointer;
+  transition: var(--transition);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cube-nav-btn:hover {
+  background: var(--c-gold);
+  color: var(--c-bg-deep);
+  border-color: var(--c-gold);
+  transform: scale(1.1);
+}
+
+/* Gallery Grid */
+.gallery-grid {
+  text-align: center;
+}
+
+.gallery-grid-title {
+  font-family: var(--ff-display);
+  font-size: clamp(1.4rem, 2.5vw, 1.8rem);
+  color: var(--c-white);
+  margin-bottom: 32px;
+  font-weight: 600;
+}
+
+.gallery-grid-items {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+.gallery-grid-item {
+  border-radius: 14px;
+  overflow: hidden;
+  position: relative;
+  aspect-ratio: 16/10;
+  cursor: pointer;
+}
+
+.gallery-grid-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.gallery-grid-item:hover img {
+  transform: scale(1.05);
+}
+
+.gallery-grid-item::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 60%, rgba(0, 0, 0, 0.3));
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.gallery-grid-item:hover::after {
+  opacity: 1;
+}
+
+/* Resort Living Responsive */
+@media (max-width: 900px) {
+  .resort-living-layout {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .resort-living-carousel {
+    position: relative;
+    top: 0;
+  }
+
+  .cube-carousel .swiper-slide img {
+    height: 300px;
+  }
+
+  .gallery-grid-items {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .cube-carousel .swiper-slide img {
+    height: 240px;
+  }
+
+  .gallery-grid-items {
+    grid-template-columns: 1fr;
+  }
+}
+
 

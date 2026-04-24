@@ -1,4 +1,4 @@
-﻿/* =============================================================
+/* =============================================================
    THE HARMONIE LANDING PAGE - JavaScript
    Handles: form submission, gallery, animations, counter
    ============================================================= */
@@ -14,6 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initParticles();
   initCountUp();
   initGallery();
+  initCubeCarousel();
   initScrollReveal();
   initHighlightCards();
   initFinanceCards();
@@ -187,6 +188,38 @@ function initGallery() {
   }, { passive: true });
 
   resetAuto();
+}
+
+function initCubeCarousel() {
+  const el = document.getElementById('cubeCarousel');
+  if (!el || typeof Swiper === 'undefined') return;
+
+  const cubeSwiper = new Swiper('#cubeCarousel', {
+    effect: 'cube',
+    grabCursor: true,
+    loop: true,
+    speed: 600,
+    autoplay: {
+      delay: 4000,
+      disableOnInteraction: false,
+      pauseOnMouseEnter: true
+    },
+    cubeEffect: {
+      shadow: true,
+      slideShadows: true,
+      shadowOffset: 20,
+      shadowScale: 0.94
+    },
+    pagination: {
+      el: '.cube-pagination',
+      clickable: true
+    }
+  });
+
+  const prevBtn = document.querySelector('.cube-prev');
+  const nextBtn = document.querySelector('.cube-next');
+  if (prevBtn) prevBtn.addEventListener('click', () => cubeSwiper.slidePrev());
+  if (nextBtn) nextBtn.addEventListener('click', () => cubeSwiper.slideNext());
 }
 
 function initScrollReveal() {
