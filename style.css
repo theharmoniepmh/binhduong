@@ -799,13 +799,13 @@ a {
 }
 
 .card-media {
-  height: 180px;
+  height: 240px;
   margin: -28px -28px 22px;
   border-radius: 20px 20px 0 0;
   background-image:
-    linear-gradient(180deg, rgba(10, 10, 15, 0.04), rgba(10, 10, 15, 0.38)),
+    linear-gradient(180deg, rgba(10, 10, 15, 0.04), rgba(10, 10, 15, 0.28)),
     var(--card-image);
-  background-size: contain;
+  background-size: cover;
   background-repeat: no-repeat;
   background-position: var(--card-position, center);
   background-color: rgba(10, 10, 15, 0.3);
@@ -1700,13 +1700,13 @@ a {
 }
 
 .silicon-media {
-  height: 192px;
+  height: 240px;
   margin: -28px -28px 24px;
   border-radius: 20px 20px 0 0;
   background-image:
-    linear-gradient(180deg, rgba(10, 10, 15, 0.08), rgba(10, 10, 15, 0.42)),
+    linear-gradient(180deg, rgba(10, 10, 15, 0.08), rgba(10, 10, 15, 0.32)),
     var(--card-image);
-  background-size: contain;
+  background-size: cover;
   background-repeat: no-repeat;
   background-position: var(--card-position, center);
   background-color: rgba(10, 10, 15, 0.3);
@@ -1714,8 +1714,8 @@ a {
 }
 
 .silicon-media--community {
-  background-size: contain;
-  background-position: var(--card-position, center 60%);
+  background-size: cover;
+  background-position: var(--card-position, center 50%);
 }
 
 .silicon-card h3 {
@@ -2371,3 +2371,4 @@ a {
     font-size: 1.75rem;
   }
 }
+

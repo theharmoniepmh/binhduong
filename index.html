@@ -9,6 +9,124 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
+  <style>
+    /* CSS cho section STORYTELLING (Nỗi đau) */
+    .pain-section {
+      padding: calc(var(--section-pad) * 0.8) 0;
+      background: linear-gradient(180deg, #101015, var(--c-bg-deep));
+    }
+    
+    .pain-list {
+      display: flex;
+      flex-direction: column;
+      gap: 60px;
+      margin-top: 40px;
+      max-width: 900px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    
+    .pain-card {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 40px;
+      align-items: center;
+      background: var(--c-bg-card);
+      border: 1px solid var(--c-border);
+      border-radius: 24px;
+      padding: 30px;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.5);
+      transition: var(--transition);
+    }
+    
+    .pain-card.reverse {
+      grid-template-columns: 0.9fr 1.1fr;
+    }
+    
+    .pain-card.reverse .pain-media {
+      order: 2;
+    }
+    .pain-card.reverse .pain-content {
+      order: 1;
+    }
+    
+    .pain-card:hover {
+      transform: translateY(-5px);
+      border-color: var(--c-gold);
+      box-shadow: 0 20px 45px rgba(212, 168, 83, 0.15);
+    }
+    
+    .pain-badge {
+      display: inline-block;
+      padding: 6px 16px;
+      background: rgba(212, 168, 83, 0.1);
+      color: var(--c-gold-light);
+      border-radius: 30px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 1px;
+      margin-bottom: 15px;
+      text-transform: uppercase;
+      border: 1px solid rgba(212, 168, 83, 0.3);
+    }
+    
+    .pain-content h3 {
+      font-family: var(--ff-display);
+      font-size: 1.8rem;
+      color: var(--c-white);
+      margin-bottom: 20px;
+      line-height: 1.3;
+    }
+    
+    .text-justify {
+      text-align: justify;
+      text-align-last: left;
+      font-size: 1.05rem;
+      line-height: 1.8;
+      color: #d1d1d1;
+    }
+    
+    .highlight-text {
+      background: rgba(196, 30, 36, 0.2);
+      color: #fff;
+      padding: 0 6px;
+      border-radius: 4px;
+      font-weight: 600;
+      border-bottom: 1px solid var(--c-red-glow);
+    }
+    
+    .story-bridge {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 60px 24px;
+      text-align: center;
+    }
+    .story-bridge p {
+      font-size: clamp(1.1rem, 2.2vw, 1.25rem);
+      line-height: 1.85;
+      color: var(--c-text);
+      text-align: justify;
+      text-align-last: center;
+    }
+    .story-bridge p strong {
+      color: var(--c-gold-light);
+    }
+    .story-bridge-divider {
+      width: 60px;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--c-gold), transparent);
+      margin: 0 auto 30px;
+    }
+    @media (max-width: 900px) {
+      .pain-card, .pain-card.reverse {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+      .pain-card.reverse .pain-media { order: 1; }
+      .pain-card.reverse .pain-content { order: 2; }
+      .story-bridge { padding: 40px 18px; }
+    }
+  </style>
 </head>
 <body>
   <div class="chat-dock" aria-label="Liên hệ bot">
@@ -72,12 +190,93 @@
     </div>
   </section>
 
+  <!-- BRIDGE: Hero → Pain -->
+  <div class="story-bridge">
+    <div class="story-bridge-divider"></div>
+    <p>Nhưng trước khi đi sâu hơn, hãy dừng lại một chút. Trên thị trường bất động sản, <strong>có những bài học mà nếu biết sớm hơn, nhiều người đã không phải ngồi tiếc nuối như bây giờ</strong>.</p>
+  </div>
+
+  <!-- GÓC NHÌN NGƯỜI TRONG CUỘC (STORYTELLING PAIN POINTS) -->
+  <section id="pain-stories" class="pain-section">
+    <div class="container">
+      <h2 class="section-title">Ba câu chuyện thật từ thị trường</h2>
+      <p class="section-subtitle" style="margin-bottom: 50px;">Không phải lý thuyết suông. Đây là những tình huống đang xảy ra mỗi ngày, với những người có điều kiện tài chính hoàn toàn có thể sở hữu nhà — nhưng đã bỏ lỡ.</p>
+      
+      <div class="pain-list">
+        <!-- Câu chuyện 1 -->
+        <article class="pain-card" data-reveal-section>
+          <div class="pain-media">
+            <img src="assets/generated/pain-inflation.png" alt="Giá nhà tăng nhanh hơn tiền tiết kiệm" loading="lazy" style="width:100%; border-radius:16px; margin-bottom:16px;">
+            <div class="video-embed" style="padding-bottom: 56.25%;">
+              <iframe src="https://www.youtube.com/embed/apkq81eajlM" title="Cơ hội 500 triệu" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+          </div>
+          <div class="pain-content">
+            <span class="pain-badge">Từng có 500 triệu nhàn rỗi</span>
+            <h3>"Giá như ngày đó tôi dám dùng đòn bẩy..."</h3>
+            <p class="text-justify">
+              Năm đó cầm 500 triệu, tôi chê chung cư trung tâm đắt, sợ vay ngân hàng mỗi tháng trả lãi áp lực. Tôi chọn mang tiền gửi tiết kiệm, tự nhủ "đợi góp đủ 2 tỷ rồi mua đứt luôn cho chắc".
+              Rồi <span class="highlight-text">vật giá leo thang, giá nhà tăng chóng mặt</span>. Lãi suất tiết kiệm hoàn toàn không đuổi kịp tốc độ tăng giá bất động sản. Căn hộ ngày đó 2 tỷ, giờ đã vọt lên hơn 3 tỷ. Số tiền 500 triệu của tôi giờ chỉ còn như muối bỏ bể, vĩnh viễn đánh mất cơ hội sở hữu nhà.
+              <br><br>
+              <strong>Bài học:</strong> Đừng bao giờ đợi đủ tiền mới mua nhà. Hãy mạnh dạn dùng đòn bẩy khi chủ đầu tư đang hỗ trợ <span class="highlight-text">lãi suất 0% và ân hạn gốc</span>, dùng chính đòn bẩy đó để khóa chặt giá trị tài sản ở hiện tại.
+            </p>
+          </div>
+        </article>
+
+        <!-- Câu chuyện 2 -->
+        <article class="pain-card reverse" data-reveal-section>
+          <div class="pain-media">
+            <img src="assets/generated/pain-renting.png" alt="10 năm thuê nhà mất 1.8 tỷ" loading="lazy" style="width:100%; border-radius:16px; margin-bottom:16px;">
+            <div class="video-embed" style="padding-bottom: 56.25%;">
+              <iframe src="https://www.youtube.com/embed/9oz_SF6P_1s" title="Nỗi đau ở thuê" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+          </div>
+          <div class="pain-content">
+            <span class="pain-badge">10 năm ở nhà thuê</span>
+            <h3>"Tôi đã mua cho chủ nhà nửa căn hộ"</h3>
+            <p class="text-justify">
+              Với mức thu nhập 35 triệu/tháng, tôi trích 15 triệu thuê một căn hộ đẹp để sống thoải mái, tận hưởng tuổi trẻ. Mọi thứ tưởng chừng rất ổn, cho đến một ngày tôi ngồi nhẩm tính lại sổ sách: 
+              <span class="highlight-text">15 triệu x 120 tháng = 1,8 tỷ đồng</span> bay hơi hoàn toàn. Tôi đã nai lưng trả thay tiền gốc ngân hàng cho chủ nhà suốt 10 năm ròng rã, và cuối cùng tôi không có lấy một viên gạch nào mang tên mình.
+              <br><br>
+              <strong>Bài học:</strong> Trả góp mua nhà thực chất là cách tốt nhất để ép bản thân tiết kiệm có kỷ luật. Hãy chuyển ngay khoản tiền thuê nhà hàng tháng vô nghĩa kia thành tiền tích sản bền vững cho chính tương lai của bạn.
+            </p>
+          </div>
+        </article>
+
+        <!-- Câu chuyện 3 -->
+        <article class="pain-card" data-reveal-section>
+          <div class="pain-media">
+            <img src="assets/generated/pain-ghost.png" alt="Dự án bỏ hoang - bài học đắt giá" loading="lazy" style="width:100%; border-radius:16px; margin-bottom:16px;">
+            <div class="video-embed" style="padding-bottom: 56.25%;">
+              <iframe src="https://www.youtube.com/embed/eRGFL04K9-k" title="Bài học đầu tư" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+          </div>
+          <div class="pain-content">
+            <span class="pain-badge">Nhà đầu tư từng "Đu đỉnh"</span>
+            <h3>"Nỗi ám ảnh mang tên: Dự án trên giấy"</h3>
+            <p class="text-justify">
+              Cầm 2 tỷ tiền mặt trong tay, tôi từng hám rẻ mà đâm đầu mua các dự án "bánh vẽ" ở tít vùng ven. Bọn họ hứa hẹn lợi nhuận X2, X3... Nhưng kết quả? Chủ đầu tư yếu kém cạn vốn, dự án trùm mền cỏ mọc um tùm, pháp lý thì mập mờ. Tiền tỷ của tôi bị giam lỏng, cắn răng muốn bán cắt lỗ cũng không một ai dám mua.
+              <br><br>
+              <strong>Bài học:</strong> Trong bối cảnh nhiễu nhương hiện nay, an toàn phải là tiêu chí số 1. Chỉ chọn xuống tiền với những bảo chứng tuyệt đối từ các ông lớn như <span class="highlight-text">Phú Mỹ Hưng</span>. Mua là chắc chắn hình thành, ra sổ là nắm chắc phần thắng.
+            </p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- BRIDGE: Pain → Facts -->
+  <div class="story-bridge">
+    <div class="story-bridge-divider"></div>
+    <p>Cả ba câu chuyện trên đều có chung một điểm: <strong>thiếu một dự án đủ tốt để ra quyết định đúng thời điểm</strong>. Và đây chính là lý do <span class="brand-highlight">The Harmonie</span> đang được chú ý — một dự án mà khi nhìn vào các yếu tố cốt lõi, nhiều người cảm thấy "đây là dự án đáng để tìm hiểu thật kỹ".</p>
+  </div>
+
   <section id="quick-facts" class="facts-section">
     <div class="container">
       <div class="facts-layout">
         <div class="facts-panel panel-card" data-reveal-section>
-          <span class="mini-kicker">TỔNG QUAN NHANH</span>
-          <h2 class="section-title">Nhìn nhanh những điểm nổi bật của <span class="brand-highlight">The Harmonie</span></h2>
+          <span class="mini-kicker">VẬY THE HARMONIE CÓ GÌ?</span>
+          <h2 class="section-title">Toàn cảnh dự án trong 60 giây</h2>
           <p class="section-subtitle">Các thông tin quan trọng được cô đọng giúp khách hàng nắm nhanh quy mô dự án, nhóm sản phẩm, nhu cầu khu vực và thời điểm phù hợp để đầu tư.</p>
           <div class="facts-grid">
             <article class="fact-card fact-card--video" tabindex="0">
@@ -110,35 +309,35 @@
         </div>
 
         <aside class="trust-panel panel-card" data-reveal-section>
-          <span class="mini-kicker">GIÁ TRỊ TẠO NIỀM TIN</span>
-          <h3>Khách hàng hoàn toàn yên tâm khi chọn mua</h3>
+          <span class="mini-kicker">VÌ SAO YÊN TÂM KHI CHỌN MUA</span>
+          <h3>Khách hàng hoàn toàn yên tâm khi chọn <span class="brand-highlight">The Harmonie</span></h3>
           <div class="trust-list">
             <article class="trust-card" tabindex="0">
-              <span class="trust-icon">Phú Mỹ Hưng</span>
+              <img src="assets/generated/trust-pmh.png" alt="Trụ sở Phú Mỹ Hưng" style="width:54px; height:54px; border-radius:16px; object-fit:cover;">
               <div>
                 <h4>Phát triển bởi Phú Mỹ Hưng</h4>
-                <p>Điểm mạnh không chỉ nằm ở sản phẩm, mà còn ở tư duy quy hoạch, trải nghiệm sống và năng lực vận hành đã được thị trường ghi nhận trong nhiều năm.</p>
+                <p><span class="brand-highlight">The Harmonie</span> kế thừa trọn vẹn tinh hoa quy hoạch, thiết kế và quản lý vận hành của Phú Mỹ Hưng — thương hiệu đã chiếm được niềm tin của hàng vạn cư dân trong hơn 30 năm qua. Đợt mở bán 2 đạt tỷ lệ tiêu thụ 89%, với hơn 1.000 lượt đăng ký.</p>
               </div>
             </article>
             <article class="trust-card" tabindex="0">
-              <span class="trust-icon">Pháp lý</span>
+              <img src="assets/generated/trust-legal.png" alt="Pháp lý rõ ràng" style="width:54px; height:54px; border-radius:16px; object-fit:cover;">
               <div>
-                <h4>Pháp lý rõ ràng</h4>
-                <p>Pháp lý rõ ràng luôn là nền tảng quan trọng với cả khách mua để ở lẫn khách đầu tư dài hạn vì liên quan trực tiếp đến khả năng sở hữu và khai thác tài sản.</p>
+                <h4>Pháp lý minh bạch, hướng tới sổ hồng</h4>
+                <p>Dự án có đầy đủ giấy phép xây dựng, phê duyệt 1/500 và nghiĩa vụ tài chính đất đai rõ ràng. Đây là nền tảng để chủ sở hữu yên tâm về việc ra sổ, thế chấp vay vốn hoặc chuyển nhượng sau này.</p>
               </div>
             </article>
             <article class="trust-card" tabindex="0">
-              <span class="trust-icon">An ninh</span>
+              <img src="assets/generated/trust-security.png" alt="An ninh chuẩn Phú Mỹ Hưng" style="width:54px; height:54px; border-radius:16px; object-fit:cover;">
               <div>
-                <h4>Vận hành, an ninh theo chuẩn Phú Mỹ Hưng</h4>
-                <p>Giá trị ở thực được duy trì lâu dài nhờ vận hành bài bản, kiểm soát an ninh tốt và chất lượng sống ổn định cho cư dân mỗi ngày.</p>
+                <h4>Vận hành và an ninh theo chuẩn Phú Mỹ Hưng</h4>
+                <p>Hệ thống an ninh đa lớp, quản lý vận hành chuyên nghiệp được đào tạo bài bản theo chuẩn mực Phú Mỹ Hưng. Chất lượng sống cư dân được duy trì ổn định từ ngày đầu tiên nhận nhà.</p>
               </div>
             </article>
             <article class="trust-card" tabindex="0">
-              <span class="trust-icon">Chính sách</span>
+              <img src="assets/generated/trust-policy.png" alt="Chính sách hỗ trợ" style="width:54px; height:54px; border-radius:16px; object-fit:cover;">
               <div>
-                <h4>Chính sách hiện hành thuận lợi</h4>
-                <p>Chính sách hiện hành đang hỗ trợ khách hàng chủ động hơn về dòng tiền khi muốn chọn căn sớm ở giai đoạn mở bán hiện tại.</p>
+                <h4>Chính sách bán hàng vượt trội</h4>
+                <p>Thanh toán chỉ 20% khi ký hợp đồng, hỗ trợ lãi suất 0% và ân hạn gốc đến khi nhận nhà, tri ân 1% và miễn phí quản lý 24 tháng. Dòng tiền được giảm áp lực tối đa.</p>
               </div>
             </article>
           </div>
@@ -151,10 +350,16 @@
     </div>
   </section>
 
+  <!-- BRIDGE: Facts → Highlights -->
+  <div class="story-bridge">
+    <div class="story-bridge-divider"></div>
+    <p>Số liệu là một chuyện. Nhưng điều khiến người ta thực sự quan tâm thường nằm ở <strong>những thứ chỉ cảm nhận được khi nhìn sâu hơn</strong>. Dưới đây là những lý do khiến nhiều khách hàng — sau khi tìm hiểu xong — chọn ở lại với <span class="brand-highlight">The Harmonie</span> thay vì tiếp tục so sánh.</p>
+  </div>
+
   <section id="highlights" class="highlights">
     <div class="container">
-      <h2 class="section-title">Vì sao <span class="brand-highlight">The Harmonie</span> được quan tâm mạnh?</h2>
-      <p class="section-subtitle">Dự án hội tụ nhiều yếu tố được khách hàng quan tâm: vị trí thuận tiện, môi trường sống chất lượng và chính sách hiện hành đang đáng để theo dõi.</p>
+      <h2 class="section-title">Điều gì khiến người ta chọn ở lại?</h2>
+      <p class="section-subtitle">Không phải vì quảng cáo. Mà vì khi đặt lên bàn cân với các dự án khác cùng phân khúc, <span class="brand-highlight">The Harmonie</span> có những điểm khó bỏ qua.</p>
       <div class="highlights-grid">
         <div class="highlight-card" data-aos="up" data-highlight-card tabindex="0" style="--delay: 0">
           <div class="card-media" style="--card-image: url('assets/project-images/456911589011082479637.jpg'); --card-position: center 44%;"></div>
@@ -172,9 +377,9 @@
           <p>Giá trị lớn của dự án không chỉ ở vị trí, mà còn ở tư duy quy hoạch, quản lý vận hành, an ninh và trải nghiệm sống đã làm nên tên tuổi Phú Mỹ Hưng nhiều năm qua.</p>
         </div>
         <div class="highlight-card" data-aos="up" data-highlight-card tabindex="0" style="--delay: 3">
-          <div class="card-media" style="--card-image: url('assets/project-images/342115162067173374824.jpg'); --card-position: center 50%;"></div>
+          <div class="card-media" style="--card-image: url('assets/project-images/342115162067173374819.jpg'); --card-position: center 50%;"></div>
           <h3>Kết nối nhanh đến chuỗi tiện ích lớn</h3>
-          <p>Từ dự án có thể tiếp cận thuận tiện AEON Mall, WTC (World Trade Center Binh Duong New City - TRUNG TÂM THƯƠNG MẠI THẾ GIỚI THÀNH PHỐ MỚI BÌNH DƯƠNG), Đại học Quốc tế Miền Đông, sân golf Harmonie - Twin Doves và nhiều đầu mối thương mại, giáo dục của khu vực.</p>
+          <p>Từ dự án có thể tiếp cận thuận tiện AEON Mall, Trung tâm Triển lãm Quốc tế WTC Expo, Đại học Quốc tế Miền Đông, sân golf Twin Doves và nhiều đầu mối thương mại, giáo dục của khu vực.</p>
         </div>
         <div class="highlight-card" data-aos="up" data-highlight-card tabindex="0" style="--delay: 4">
           <div class="card-media" style="--card-image: url('assets/project-images/12049856380016819158.jpg'); --card-position: center 28%;"></div>
@@ -199,14 +404,20 @@
     </div>
   </section>
 
+  <!-- BRIDGE: Highlights → Silicon -->
+  <div class="story-bridge">
+    <div class="story-bridge-divider"></div>
+    <p>Một dự án tốt cần nằm đúng chỗ. Và "đúng chỗ" ở đây không chỉ là vị trí trên bản đồ, mà là <strong>nằm giữa một hệ sinh thái đang sống, đang phát triển mỗi ngày</strong>.</p>
+  </div>
+
   <section id="silicon" class="silicon-section">
     <div class="container">
-      <div class="silicon-badge">TRUNG TÂM MỚI CỦA BÌNH DƯƠNG</div>
-      <h2 class="section-title">Sống giữa nhịp phát triển mới của Bình Dương<br><span style="color: var(--c-gold)">Cộng đồng chuyên gia và trục hạ tầng lớn</span></h2>
+      <div class="silicon-badge">KHU VỰC XUNG QUANH</div>
+      <h2 class="section-title">Ai đang sống và làm việc quanh đây?<br><span style="color: var(--c-gold)">Và điều đó có ý nghĩa gì với giá trị tài sản</span></h2>
       <div class="silicon-grid">
         <div class="silicon-stack">
           <div class="silicon-card">
-            <div class="silicon-media silicon-media--community" style="--card-image: url('assets/project-images/12049856380016819155.jpg'); --card-position: center 60%;"></div>
+            <div class="silicon-media silicon-media--community" style="--card-image: url('assets/project-images/342115162067173374818.jpg'); --card-position: center 50%;"></div>
             <h3>Cộng đồng cư dân<br>chất lượng</h3>
             <p><span class="brand-highlight">The Harmonie</span> nằm giữa nhóm khách thuê và người mua ở thật có chất lượng: chuyên gia, quản lý cấp cao, người nước ngoài và gia đình trẻ đang làm việc tại các khu công nghiệp lớn quanh khu vực.</p>
           </div>
@@ -233,24 +444,20 @@
           <h3>Lõi đô thị khoa học<br>công nghệ 323ha</h3>
           <p>Dự án nằm trong vùng phát triển mới phía Bắc TP.HCM, nơi hạ tầng, đô thị dịch vụ và các cụm công nghệ đang được đầu tư đồng bộ. Đây là lớp nền quan trọng cho dư địa tăng giá trị trong trung và dài hạn.</p>
         </div>
-        <div class="silicon-card">
-          <div class="silicon-media" style="--card-image: url('assets/project-images/342115162067173374824.jpg'); --card-position: center 50%;"></div>
-          <h3>Pháp lý rõ ràng<br>hướng tới ra sổ</h3>
-          <p>Với khách mua ở lẫn đầu tư dài hạn, pháp lý rõ ràng luôn là điều kiện để xuống tiền chắc tay. Đây là lợi thế giúp việc sở hữu, khai thác, làm hồ sơ vay hoặc chuyển nhượng về sau thuận lợi hơn.</p>
-        </div>
-        <div class="silicon-card">
-          <div class="silicon-media" style="--card-image: url('assets/project-images/342115162067173374821.jpg'); --card-position: center 46%;"></div>
-          <h3>Vận hành an ninh<br>chuẩn Phú Mỹ Hưng</h3>
-          <p>Giá trị ở thật không chỉ nằm ở thiết kế hay vị trí, mà còn ở cách dự án được quản lý mỗi ngày. Tiêu chuẩn vận hành, kiểm soát an ninh và trải nghiệm cư dân theo tinh thần Phú Mỹ Hưng là điểm tạo khác biệt bền vững.</p>
-        </div>
       </div>
     </div>
   </section>
 
+  <!-- BRIDGE: Silicon → Gallery -->
+  <div class="story-bridge">
+    <div class="story-bridge-divider"></div>
+    <p>Đọc đến đây có thể vẫn còn nhiều câu hỏi. Đó là chuyện bình thường. Hãy <strong>xem qua hình ảnh thực tế dưới đây</strong> để hình dung rõ hơn về không gian sống và quy hoạch tổng thể của <span class="brand-highlight">The Harmonie</span>.</p>
+  </div>
+
   <section id="gallery" class="gallery">
     <div class="container">
-      <h2 class="section-title">Hình ảnh dự án</h2>
-      <p class="section-subtitle">Với phối cảnh, tiện ích và không gian sống tại <span class="brand-highlight">The Harmonie</span> khách hàng hoàn toàn hình dung dễ dàng trước khi chọn căn phù hợp.</p>
+      <h2 class="section-title">Nhìn là hiểu vì sao người ta chọn nơi này</h2>
+      <p class="section-subtitle">Phối cảnh, tiện ích và không gian sống thực tế tại <span class="brand-highlight">The Harmonie</span> — để hình dung dễ dàng hơn trước khi chọn căn phù hợp.</p>
       <div class="gallery-viewport">
         <div class="gallery-track" id="galleryTrack">
           <div class="gallery-slide">
@@ -281,10 +488,16 @@
     </div>
   </section>
 
+  <!-- BRIDGE: Gallery → Units -->
+  <div class="story-bridge">
+    <div class="story-bridge-divider"></div>
+    <p>Nếu đã thấy được không gian, câu hỏi tiếp theo thường là: <strong>"Vậy căn nào phù hợp với mình?"</strong>. Dưới đây là các nhóm sản phẩm đang mở bán.</p>
+  </div>
+
   <section id="product-types" class="units-section">
     <div class="container">
-      <span class="mini-kicker mini-kicker--center">LOẠI CĂN VÀ NHU CẦU PHÙ HỢP</span>
-      <p class="section-subtitle">Mỗi nhóm căn hộ có công năng riêng, được thiết kế hướng tới nhu cầu riêng biệt của từng khách hàng.</p>
+      <span class="mini-kicker mini-kicker--center">CHỌN CĂN PHÙ HỢP</span>
+      <p class="section-subtitle">Mỗi nhóm căn hộ hướng tới một nhu cầu riêng biệt — từ căn đầu tiên cho người trẻ, đến không gian cho gia đình nhiều thế hệ, hay sản phẩm đặc biệt cho khách ưu tiên giá trị khác biệt.</p>
       <div class="units-grid">
         <article class="unit-card" tabindex="0">
           <span class="unit-badge">43,79-46,40 m²</span>
@@ -317,9 +530,10 @@
           <a href="#contact-form" class="text-link">Nhận danh sách Ground House</a>
         </article>
         <article class="unit-card unit-card--accent" tabindex="0">
+          <img src="assets/generated/consult.png" alt="Tư vấn chọn căn" loading="lazy" style="width:100%; border-radius:14px; margin-bottom:12px;">
           <span class="unit-badge">Chưa rõ nhu cầu</span>
           <h3>Nhận tư vấn chọn căn</h3>
-          <p>Dành cho khách hàng chưa biết được nên chọn 1 phòng ngủ, 2 phòng ngủ hay 3 phòng ngủ, chuyên viên có thể giúp lọc sẵn theo ngân sách, mục đích và giai đoạn thanh toán.</p>
+          <p>Chưa biết nên chọn 1 phòng ngủ, 2 phòng ngủ hay 3 phòng ngủ? Chuyên viên có thể giúp lọc sẵn theo ngân sách, mục đích sử dụng và giai đoạn thanh toán phù hợp.</p>
           <a href="#contact-form" class="btn-secondary">Nhận tư vấn chọn căn</a>
         </article>
       </div>
@@ -336,26 +550,32 @@
 
           <div class="connection-points">
             <article class="connection-point" tabindex="0">
+              <img src="assets/generated/conn-highway.png" alt="Trục đường" loading="lazy" style="width:100%; border-radius:12px; margin-bottom:10px;">
               <strong>Võ Văn Kiệt - Mỹ Phước - Tân Vạn</strong>
               <p>Hai trục giao thông quan trọng giúp kết nối nhanh về TP.HCM, các khu công nghiệp lớn và trung tâm mới của Bình Dương.</p>
             </article>
             <article class="connection-point" tabindex="0">
+              <img src="assets/generated/conn-aeon.png" alt="AEON Mall" loading="lazy" style="width:100%; border-radius:12px; margin-bottom:10px;">
               <strong>AEON Mall Bình Dương</strong>
               <p>Điểm mua sắm, giải trí và dịch vụ lớn của khu vực, nâng chất lượng sống hàng ngày và tăng sức hút với nhóm khách thuê.</p>
             </article>
             <article class="connection-point" tabindex="0">
-              <strong>WTC Expo (World Trade Center Expo - Trung tâm Triển lãm Quốc tế)</strong>
+              <img src="assets/generated/conn-wtc.png" alt="WTC Expo" loading="lazy" style="width:100%; border-radius:12px; margin-bottom:10px;">
+              <strong>WTC Expo (Trung tâm Triển lãm Quốc tế)</strong>
               <p>Tâm điểm sự kiện, hội nghị và triển lãm quy mô lớn, góp phần hình thành nhịp thương mại sôi động ngay khu vực dự án.</p>
             </article>
             <article class="connection-point" tabindex="0">
+              <img src="assets/generated/conn-university.png" alt="ĐH Miền Đông" loading="lazy" style="width:100%; border-radius:12px; margin-bottom:10px;">
               <strong>Đại học Quốc tế Miền Đông</strong>
               <p>Cụm giáo dục chất lượng cao giúp khu vực duy trì nhu cầu ở thực, nhu cầu thuê và sức sống đô thị bền vững.</p>
             </article>
             <article class="connection-point" tabindex="0">
-              <strong>Twin Doves & Harmonie Golf Park</strong>
+              <img src="assets/generated/conn-golf.png" alt="Sân golf Twin Doves" loading="lazy" style="width:100%; border-radius:12px; margin-bottom:10px;">
+              <strong>Twin Doves &amp; Harmonie Golf Park</strong>
               <p>Chuỗi sân golf danh tiếng tạo nên chuẩn sống khác biệt, đồng thời gia tăng sức hấp dẫn với nhóm chuyên gia và khách hàng cao cấp.</p>
             </article>
             <article class="connection-point" tabindex="0">
+              <img src="assets/generated/conn-industrial.png" alt="KCN" loading="lazy" style="width:100%; border-radius:12px; margin-bottom:10px;">
               <strong>Trung tâm hành chính và khu công nghiệp lân cận</strong>
               <p>Dòng chuyên gia, quản lý và lực lượng lao động kỹ thuật chất lượng cao quanh khu vực là nền tảng quan trọng cho nhu cầu ở và thuê.</p>
             </article>
@@ -404,19 +624,25 @@
           </article>
           <article class="proof-quote-card" tabindex="0">
             <span class="quote-label">Việc nên làm ngay</span>
-            <h3>Nhận sớm giỏ căn để không bỏ lỡ các căn đẹp</h3>
+            <h3>Nhận sớm thông tin các căn còn lại (chưa bán) để không bỏ lỡ các căn đẹp</h3>
             <p>Ở giai đoạn mở bán, những căn có vị trí đẹp và chính sách phù hợp thường được quan tâm sớm hơn, vì vậy việc nắm thông tin trước luôn có lợi thế rõ ràng.</p>
-            <a href="#contact-form" class="btn-secondary">Nhận danh sách căn đang mở bán</a>
+            <a href="#contact-form" class="btn-secondary">Nhận danh sách căn đẹp đang mở bán còn lại</a>
           </article>
         </div>
       </div>
     </div>
   </section>
 
+  <!-- BRIDGE: Proof → Finance -->
+  <div class="story-bridge">
+    <div class="story-bridge-divider"></div>
+    <p>Và đây là phần nhiều người quan tâm nhất: <strong>"Mua <span class="brand-highlight">The Harmonie</span> thì thanh toán như thế nào?"</strong>. Chính sách hiện hành đang tạo điều kiện rất thuận lợi cho người mua ở giai đoạn này.</p>
+  </div>
+
   <section id="finance" class="finance-section">
     <div class="container">
-      <h2 class="section-title">Chính sách bán hàng<br><span style="color: var(--c-gold)">đang được quan tâm</span></h2>
-      <p class="section-subtitle">Chính sách hiện hành đang hỗ trợ khách hàng chủ động hơn về dòng tiền khi tìm hiểu và chọn căn sớm.</p>
+      <h2 class="section-title">Dòng tiền cần bao nhiêu<br><span style="color: var(--c-gold)">để bắt đầu sở hữu?</span></h2>
+      <p class="section-subtitle">Không cần thanh toán ngay 100%. Chính sách hiện tại đang cho phép giữ chỗ với mức vốn ban đầu vừa phải, phù hợp cho cả người mua lần đầu lẫn nhà đầu tư tích sản.</p>
       <div class="finance-grid">
         <div class="finance-card" tabindex="0" data-policy-card>
           <div class="finance-number">20%</div>
@@ -437,12 +663,18 @@
     </div>
   </section>
 
+  <!-- BRIDGE: Finance → Form -->
+  <div class="story-bridge">
+    <div class="story-bridge-divider"></div>
+    <p>Nếu đọc đến đây và cảm thấy <span class="brand-highlight">The Harmonie</span> có điểm gì đó khác biệt, hãy để lại thông tin ngay bên dưới. <strong>Không cam kết, không ràng buộc</strong> — chỉ là nhận thêm tài liệu để có góc nhìn đầy đủ hơn trước khi quyết định.</p>
+  </div>
+
   <section id="contact-form" class="contact-section">
     <div class="container">
       <div class="form-wrapper">
         <div class="form-info">
           <h2 class="form-title">Đăng ký nhận<br><span class="accent">thông tin ưu tiên</span></h2>
-          <p class="form-desc">Bằng việc để lại thông tin, khách hàng sẽ được chuyên viên sẽ gửi brochure dự án, mặt bằng các tháp, chính sách hiện hành và danh sách căn phù hợp với nhu cầu ở hoặc đầu tư của Anh/Chị.</p>
+          <p class="form-desc">Chuyên viên sẽ gửi brochure dự án, mặt bằng các tháp, chính sách hiện hành và danh sách căn phù hợp với nhu cầu ở hoặc đầu tư.</p>
           <div class="form-benefits">
             <div class="benefit">Brochure và tổng mặt bằng dự án</div>
             <div class="benefit">Danh sách căn đang mở bán theo nhu cầu</div>
@@ -529,6 +761,7 @@
       </div>
       <p class="footer-note">Trang thông tin giới thiệu dự án, không phải website chính thức của chủ đầu tư.</p>
       <p class="footer-copy">&copy; 2026 - Tư vấn bởi đội ngũ phân phối.</p>
+      <p style="font-size: 0.7rem; color: rgba(226,218,209,0.35); font-style: italic; margin-top: 6px;">Trang có sử dụng hình ảnh do AI tạo để minh họa.</p>
     </div>
   </footer>
 
